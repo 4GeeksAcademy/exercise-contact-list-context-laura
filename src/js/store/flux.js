@@ -3,7 +3,11 @@ const getState = ({ getStore, setStore }) => {
 		store: {
 			//Your data structures, A.K.A Entities
 			contacts: [],
-			agenda: "contactosdelaura"
+			agenda: "contactosdelaura",
+			itemDelete: index => {
+				const newArr = contacts.filter((param, i) => i !== index);
+				return newArr;
+			}
 		},
 		actions: {
 			//(Arrow) Functions that update the Store
@@ -24,25 +28,51 @@ const getState = ({ getStore, setStore }) => {
 					.then(data => setStore({ contacts: data }))
 					.catch(error => console.log(error));
 			},
-			createContact: (fullName, email, agendadelaura, phone, address) => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/agendadelaura", {
+			createContact: (full_name, email, phone, address) => {
+				let myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				let raw = JSON.stringify({
+					full_name: full_name,
+					email: email,
+					agenda_slug: "agendadelaura",
+					address: address,
+					phone: phone
+				});
+
+				let requestOptions = {
 					method: "POST",
-					Headers: { "Content-Type": "application/json" },
-					body: {
-						fullName: fullName,
-						email: email,
-						agenda_slug: agendadelaura,
-						address: address,
-						phone: phone
-					}
-				})
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow"
+				};
+
+				fetch("https://assets.breatheco.de/apis/fake/contact/", requestOptions)
 					.then(response => response.json())
-					.then(data => setStore({ contacts: data }))
-					.catch(error => console.log(error));
+					.then(result => console.log(result))
+					.catch(error => console.log("error", error));
+
+				// fetch("https://assets.breatheco.de/apis/fake/contact/", {
+				// 	method: "POST",
+				// 	headers: { "Content-Type": "application/json" },
+				// 	body: JSON.stringify({
+				// 		full_name: full_name,
+				// 		email: email,
+				// 		agenda_slug: "agendadelaura",
+				// 		address: address,
+				// 		phone: phone
+				// 	})
+				// })
+				// 	.then(response => response.json())
+				// 	.then(data => {
+				// 		setStore({ contacts: data });
+				// 		console.log(data);
+				// 	})
+				// 	.catch(error => console.log(error));
 			},
 
 			createOneContact: () => {
-				fetch("https://assets.breatheco.de/apis/fake/contact", {
+				fetch("https://assets.breatheco.de/apis/fake/contact/", {
 					method: "POST",
 					headers: { "Content-Type": "application.json" },
 					body: {
@@ -65,12 +95,12 @@ const getState = ({ getStore, setStore }) => {
 			// 		.then(data => console.log(data))
 			// 		.catch(error => console.log(error));
 			// },
-			updateOneContact: (fullName, email, agendadelaura, address, phone) => {
+			updateOneContact: (full_name, email, agendadelaura, address, phone) => {
 				fetch("https://assets.breatheco.de/apis/fake/contact/laura", {
 					method: "PUT",
 					headers: { "Content-Type": "application.json" },
 					body: {
-						full_name: fullName,
+						full_name: full_name,
 						email: email,
 						agenda_slug: agendadelaura,
 						address: address,
@@ -79,6 +109,17 @@ const getState = ({ getStore, setStore }) => {
 				})
 					.then(response => response.json())
 					.then(data => setStore({ contacts: data }))
+					.catch(error => console.log(error));
+			},
+			// functionDelete:  ({contacts.map(item => (
+			// 	< key={item.id}}),
+
+			deleteContact: () => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+					method: "DELETE"
+				})
+					.then(response => response.json())
+					.then(data => console.log(data))
 					.catch(error => console.log(error));
 			}
 		}

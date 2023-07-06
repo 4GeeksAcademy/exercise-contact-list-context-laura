@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const AddContact = () => {
-	const [fullName, setFullName] = useState("");
-	const [email, setEmail] = useState("");
-	const [phone, setPhone] = useState("");
-	const [address, setAddress] = useState("");
+	const [fullName, setFullName] = useState({ fullName: "" });
+	const [email, setEmail] = useState({ email: "" });
+	const [phone, setPhone] = useState({ phone: "" });
+	const [address, setAddress] = useState({ address: "" });
 
 	const { store, actions } = useContext(Context);
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		console.log(fullName, email, phone, address);
-		// actions.createContact(fullName, email, phone, address);
+		console.log(full_name, email, phone, address);
+		actions.createContact(fullName, email, phone, address);
 		// setFullName("");
 		// setEmail("");
 		// setAddress("");
@@ -25,7 +25,7 @@ export const AddContact = () => {
 		<div className="container">
 			<div>
 				<h1 className="text-center mt-5">Add a new contact</h1>
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={e => handleSubmit(e)}>
 					<div className="form-group">
 						<label>Full Name</label>
 						<input
