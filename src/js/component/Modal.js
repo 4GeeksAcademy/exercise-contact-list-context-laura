@@ -9,19 +9,9 @@ export const Modal = props => {
 	});
 	const { store, actions } = useContext(Context);
 
+	// }
 
-	}
-
-	function buttonDeleteContact() {
-		// deleteContact: () => {
-			fetch("https://assets.breatheco.de/apis/fake/contact/", {
-				method: "DELETE"
-			})
-				.then(response => response.json())
-				.then(data => console.log(data))
-				.catch(error => console.log(error));
-		}
-		// actions.deleteContact();
+	// actions.deleteContact();
 	return (
 		<div className="modal" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
 			<div className="modal-dialog" role="document">
@@ -50,7 +40,7 @@ export const Modal = props => {
 						</button>
 						<button
 							type="button"
-							onClick={buttonDeleteContact}
+							onClick={() => actions.deleteContact(props.id)}
 							className="btn btn-secondary"
 							data-dismiss="modal">
 							Do it!
@@ -68,7 +58,8 @@ export const Modal = props => {
 Modal.propTypes = {
 	history: PropTypes.object,
 	onClose: PropTypes.func,
-	show: PropTypes.bool
+	show: PropTypes.bool,
+	id: PropTypes.string
 };
 
 /**

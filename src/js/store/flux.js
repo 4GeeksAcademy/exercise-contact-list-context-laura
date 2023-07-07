@@ -4,7 +4,7 @@ const getState = ({ getStore, setStore }) => {
 			//Your data structures, A.K.A Entities
 			contacts: [],
 			agenda: "contactosdelaura",
-			itemDelete: index => {
+			id: index => {
 				const newArr = contacts.filter((param, i) => i !== index);
 				return newArr;
 			}
@@ -95,29 +95,29 @@ const getState = ({ getStore, setStore }) => {
 			// 		.then(data => console.log(data))
 			// 		.catch(error => console.log(error));
 			// },
-			updateOneContact: (full_name, email, agendadelaura, address, phone) => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/laura", {
+			updateOneContact: (full_name, id, email, agendadelaura, address, phone) => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
 					method: "PUT",
 					headers: { "Content-Type": "application.json" },
-					body: {
+					body: JSON.stringify({
 						full_name: full_name,
 						email: email,
 						agenda_slug: agendadelaura,
 						address: address,
 						phone: phone
-					}
+					})
 				})
 					.then(response => response.json())
 					.then(data => setStore({ contacts: data }))
 					.catch(error => console.log(error));
 			},
-			// functionDelete:  ({contacts.map(item => (
-			// 	< key={item.id}}),
 
-			deleteContact: () => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+			deleteContact: id => {
+				console.log(id);
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
 					method: "DELETE"
 				})
+					// .then(resp =>console.log(resp), if(resp.status===200){actions.getAllContacts()} return response.json()})
 					.then(response => response.json())
 					.then(data => console.log(data))
 					.catch(error => console.log(error));

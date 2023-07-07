@@ -12,12 +12,12 @@ export const AddContact = () => {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		console.log(full_name, email, phone, address);
+		console.log(fullName, email, phone, address);
 		actions.createContact(fullName, email, phone, address);
-		// setFullName("");
-		// setEmail("");
-		// setAddress("");
-		// setPhone("");
+		setFullName("");
+		setEmail("");
+		setAddress("");
+		setPhone("");
 		// actions.updateOneContact()
 	}
 
