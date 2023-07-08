@@ -4,9 +4,6 @@ import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
 export const Modal = props => {
-	const [state, setState] = useState({
-		//initialize state here
-	});
 	const { store, actions } = useContext(Context);
 
 	// }

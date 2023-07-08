@@ -3,23 +3,22 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import { Contacts } from "./Contacts.js";
 
 export const ModalEdit = props => {
-	const [state, setState] = useState({
-		//initialize state here
-	});
 	const [fullName, setFullName] = useState({ fullName: "" });
 	const [email, setEmail] = useState({ email: "" });
 	const [phone, setPhone] = useState({ phone: "" });
 	const [address, setAddress] = useState({ address: "" });
 
 	const { store, actions } = useContext(Context);
+	const info = store.onecontact;
 
 	function handleSubmit(e) {
 		e.preventDefault();
 		console.log(fullName, email, phone, address);
 		// actions.updateOneContact(props.id);
-		actions.updateOneContact(fullName, email, phone, address, props.id);
+		actions.updateOneContact(fullName, email, phone, address);
 	}
 
 	// }
@@ -55,7 +54,7 @@ export const ModalEdit = props => {
 											type="text"
 											onChange={e => setFullName(e.target.value)}
 											className="form-control"
-											placeholder="Full Name"
+											defaultValue={info.fullName}
 										/>
 									</div>
 									<div className="form-group">

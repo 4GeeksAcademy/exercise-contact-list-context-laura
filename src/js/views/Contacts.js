@@ -31,6 +31,7 @@ export const Contacts = () => {
 						{store.contacts.length > 0
 							? store.contacts.map(item => (
 									<ContactCard
+										id={item.id}
 										key={item.id}
 										onDelete={() => setState({ showModal: true, id: item.id })}
 										onEdit={() => setState({ showModalEdit: true, id: item.id })}
