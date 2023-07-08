@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const AddContact = () => {
-	const [fullName, setFullName] = useState({ fullName: "" });
+	const [full_name, setFullName] = useState({ full_name: "" });
 	const [email, setEmail] = useState({ email: "" });
 	const [phone, setPhone] = useState({ phone: "" });
 	const [address, setAddress] = useState({ address: "" });
@@ -12,13 +12,8 @@ export const AddContact = () => {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		console.log(fullName, email, phone, address);
-		actions.createContact(fullName, email, phone, address);
-		// setFullName("");
-		// setEmail("");
-		// setAddress("");
-		// setPhone("");
-		// actions.updateOneContact()
+		console.log(full_name, email, phone, address);
+		actions.createContact(full_name, email, phone, address);
 	}
 
 	return (

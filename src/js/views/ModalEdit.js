@@ -6,19 +6,20 @@ import { Link } from "react-router-dom";
 import { Contacts } from "./Contacts.js";
 
 export const ModalEdit = props => {
-	const [fullName, setFullName] = useState({ fullName: "" });
+	const [full_name, setFullName] = useState({ full_name: "" });
 	const [email, setEmail] = useState({ email: "" });
 	const [phone, setPhone] = useState({ phone: "" });
 	const [address, setAddress] = useState({ address: "" });
 
 	const { store, actions } = useContext(Context);
 	const info = store.onecontact;
-
-	function handleSubmit(e) {
+	console.log(info);
+	function handleSubmit(e, info) {
 		e.preventDefault();
-		console.log(fullName, email, phone, address);
+		console.log(full_name, email, phone, address);
 		// actions.updateOneContact(props.id);
-		actions.updateOneContact(fullName, email, phone, address);
+		// actions.getOneContact(info.id);
+		actions.updateOneContact(info);
 	}
 
 	// }
@@ -54,7 +55,7 @@ export const ModalEdit = props => {
 											type="text"
 											onChange={e => setFullName(e.target.value)}
 											className="form-control"
-											defaultValue={info.fullName}
+											defaultValue={info.full_name}
 										/>
 									</div>
 									<div className="form-group">
@@ -63,7 +64,7 @@ export const ModalEdit = props => {
 											type="email"
 											onChange={e => setEmail(e.target.value)}
 											className="form-control"
-											placeholder="Enter email"
+											defaultValue={info.email}
 										/>
 									</div>
 									<div className="form-group">
@@ -72,7 +73,7 @@ export const ModalEdit = props => {
 											type="phone"
 											onChange={e => setPhone(e.target.value)}
 											className="form-control"
-											placeholder="Enter phone"
+											defaultValue={info.phone}
 										/>
 									</div>
 									<div className="form-group">
@@ -81,7 +82,7 @@ export const ModalEdit = props => {
 											type="text"
 											onChange={e => setAddress(e.target.value)}
 											className="form-control"
-											placeholder="Enter address"
+											defaultValue={info.address}
 										/>
 									</div>
 									<button type="submit" className="btn btn-primary form-control">
@@ -109,7 +110,7 @@ ModalEdit.propTypes = {
 	onClose: PropTypes.func,
 	show: PropTypes.bool,
 	id: PropTypes.string,
-	fullName: PropTypes.string,
+	full_name: PropTypes.string,
 	address: PropTypes.string,
 	phone: PropTypes.number,
 	email: PropTypes.string

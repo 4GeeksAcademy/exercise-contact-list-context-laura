@@ -7,12 +7,12 @@ import { Modal } from "../component/Modal";
 import { ModalEdit } from "../views/ModalEdit";
 
 export const Contacts = () => {
+	const { store, actions } = useContext(Context);
 	const [state, setState] = useState({
 		showModal: false,
 		showModalEdit: false,
 		id: null
 	});
-	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
 		actions.getAllContacts();

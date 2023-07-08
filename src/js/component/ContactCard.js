@@ -15,7 +15,7 @@ export const ContactCard = props => {
 	// 	id: "id"
 	// });
 	function handleClick(props) {
-		actions.getOneContact(props.id);
+		actions.getOneContact(props.id, props.full_name, props.email, props.address, props.phone);
 		props.onEdit();
 	}
 
@@ -34,7 +34,7 @@ export const ContactCard = props => {
 							<i className="fas fa-trash-alt" />
 						</button>
 					</div>
-					<label className="name lead">{props.fullName}</label>
+					<label className="name lead">{props.full_name}</label>
 					<br />
 					<i className="fas fa-map-marker-alt text-muted mr-3" />
 					<span className="text-muted">{props.address}</span>
@@ -68,7 +68,7 @@ ContactCard.propTypes = {
 	history: PropTypes.object,
 	onDelete: PropTypes.func,
 	onEdit: PropTypes.func,
-	fullName: PropTypes.string,
+	full_name: PropTypes.string,
 	address: PropTypes.string,
 	phone: PropTypes.string,
 	email: PropTypes.string,
