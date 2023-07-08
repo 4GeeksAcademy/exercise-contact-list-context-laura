@@ -18,8 +18,8 @@ export const ModalEdit = props => {
 	function handleSubmit(e) {
 		e.preventDefault();
 		console.log(fullName, email, phone, address);
-		actions.updateOneContact(fullName, email, phone, address);
-		// actions.updateOneContact()
+		// actions.updateOneContact(props.id);
+		actions.updateOneContact(fullName, email, phone, address, props.id);
 	}
 
 	// }
@@ -85,11 +85,7 @@ export const ModalEdit = props => {
 											placeholder="Enter address"
 										/>
 									</div>
-									<button
-										type="submit"
-										className="btn btn-primary form-control"
-										onClick={() => actions.updateOneContact(props.id)}
-										data-dismiss="modal">
+									<button type="submit" className="btn btn-primary form-control">
 										Save changes
 									</button>
 									<Link className="mt-3 w-100 text-center" to="/">
@@ -113,7 +109,11 @@ ModalEdit.propTypes = {
 	history: PropTypes.object,
 	onClose: PropTypes.func,
 	show: PropTypes.bool,
-	id: PropTypes.string
+	id: PropTypes.string,
+	fullName: PropTypes.string,
+	address: PropTypes.string,
+	phone: PropTypes.number,
+	email: PropTypes.string
 };
 
 /**

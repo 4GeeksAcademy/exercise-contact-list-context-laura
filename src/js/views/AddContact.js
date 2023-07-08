@@ -14,10 +14,10 @@ export const AddContact = () => {
 		e.preventDefault();
 		console.log(fullName, email, phone, address);
 		actions.createContact(fullName, email, phone, address);
-		setFullName("");
-		setEmail("");
-		setAddress("");
-		setPhone("");
+		// setFullName("");
+		// setEmail("");
+		// setAddress("");
+		// setPhone("");
 		// actions.updateOneContact()
 	}
 

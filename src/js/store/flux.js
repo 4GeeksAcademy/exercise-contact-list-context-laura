@@ -4,10 +4,10 @@ const getState = ({ getStore, setStore }) => {
 			//Your data structures, A.K.A Entities
 			contacts: [],
 			agenda: "contactosdelaura",
-			id: index => {
-				const newArr = contacts.filter((param, i) => i !== index);
-				return newArr;
-			}
+			// id: index => {
+			// 	const newArr = contacts.filter((param, i) => i !== index);
+			// 	return newArr;
+			// }
 		},
 		actions: {
 			//(Arrow) Functions that update the Store
@@ -95,8 +95,8 @@ const getState = ({ getStore, setStore }) => {
 			// 		.then(data => console.log(data))
 			// 		.catch(error => console.log(error));
 			// },
-			updateOneContact: (full_name, id, email, agendadelaura, address, phone) => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+			updateOneContact: (full_name, email, agendadelaura, address, phone, id) => {
+				fetch(`https://assets.breatheco.de/apis/fake/contact/` + id, {
 					method: "PUT",
 					headers: { "Content-Type": "application.json" },
 					body: JSON.stringify({

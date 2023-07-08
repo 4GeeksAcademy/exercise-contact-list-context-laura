@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { AddContact } from "./AddContact";
 
 import { ContactCard } from "../component/ContactCard.js";
 import { Modal } from "../component/Modal";
-import { ModalEdit } from "../component/ModalEdit.js";
+import { ModalEdit } from "../views/ModalEdit";
 
 export const Contacts = () => {
 	const [state, setState] = useState({
