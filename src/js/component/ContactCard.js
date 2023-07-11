@@ -6,14 +6,7 @@ import { Context } from "../store/appContext";
 
 export const ContactCard = props => {
 	const { store, actions } = useContext(Context);
-	// const [state, setState] = useState({
-	// 	//initialize state here
-	// 	fullName: "fullName",
-	// 	address: "address",
-	// 	phone: "phone",
-	// 	email: "email",
-	// 	id: "id"
-	// });
+
 	function handleClick(props) {
 		actions.getOneContact(props.id, props.full_name, props.email, props.address, props.phone);
 		props.onEdit();
@@ -23,7 +16,11 @@ export const ContactCard = props => {
 		<li className="list-group-item">
 			<div className="row w-100">
 				<div className="col-12 col-sm-6 col-md-3 px-0">
-					<img src={MikePhoto} alt="Mike Anamendolla" className="rounded-circle mx-auto d-block img-fluid" />
+					<img
+						src={"https://picsum.photos/120"}
+						alt="Photo Picsum"
+						className="rounded-circle mx-auto d-block img-fluid"
+					/>
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">

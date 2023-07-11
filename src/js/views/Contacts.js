@@ -13,6 +13,9 @@ export const Contacts = () => {
 		showModalEdit: false,
 		id: null
 	});
+	useEffect(() => {
+		actions.getAllContacts();
+	}, [state]);
 
 	useEffect(() => {
 		actions.getAllContacts();
@@ -45,8 +48,23 @@ export const Contacts = () => {
 					</ul>
 				</div>
 			</div>
-			<Modal show={state.showModal} id={state.id} onClose={() => setState({ showModal: false })} />
-			<ModalEdit show={state.showModalEdit} id={state.id} onClose={() => setState({ showModalEdit: false })} />
+			<Modal
+				show={state.showModal}
+				id={state.id}
+				onClose={() => {
+					actions.getAllContacts();
+					setState({ showModal: false });
+				}}
+			/>
+
+			<ModalEdit
+				show={state.showModalEdit}
+				id={state.id}
+				onClose={() => {
+					actions.getAllContacts();
+					setState({ showModalEdit: false });
+				}}
+			/>
 		</div>
 	);
 };
